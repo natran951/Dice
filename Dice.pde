@@ -1,17 +1,15 @@
-Die die1;
-Die die2;
 void setup(){
 	noLoop();
-	size(300,300);
-	die1 = new Die(10,10);
-	die2 = new Die(60,10);
+	size(500,500);
 }
 void draw(){
 	background(255);
-	die1.roll();
-	die2.roll();
-	die1.show();
-	die2.show();
+	for (int x = 10; x < width; x = x + 50) {
+		for (int y = 10; y < height; y = y + 50){
+			Die die_n = new Die(x,y);
+			die_n.show();
+		}
+	}
 }
 void mousePressed(){
 	redraw();
@@ -23,14 +21,16 @@ class Die{ //models one single dice cube
 		myX = x;
 		myY = y;
 		mySize = 20;
+		roll();
 	}
 	void roll(){
-		dot = 3;//(int)(Math.random()*6)+1;
+		dot = (int)(Math.random()*6)+1;
 	}
 	void show(){
 		fill(255);
 		stroke(0);
 		rect(myX,myY,mySize,mySize);
+		//fill(0);
 		if (dot == 1) {
 			ellipse(myX+mySize/2,myY+mySize/2,5,5);
 		}
@@ -39,16 +39,32 @@ class Die{ //models one single dice cube
 			ellipse(myX+3*mySize/4,myY+3*mySize/4,5,5);
 		}
 		else if (dot == 3) {
-
+			ellipse(myX+mySize/4,myY+mySize/4,5,5);
+			ellipse(myX+3*mySize/4,myY+3*mySize/4,5,5);
+			ellipse(myX+mySize/2,myY+mySize/2,5,5);
 		}
 		else if (dot == 4) {
+			ellipse(myX+mySize/4,myY+mySize/4,5,5);
+			ellipse(myX+mySize/4,myY+3*mySize/4,5,5);
+			ellipse(myX+3*mySize/4,myY+3*mySize/4,5,5);
+			ellipse(myX+3*mySize/4,myY+mySize/4,5,5);
 
 		}
 		else if (dot == 5) {
-
+			ellipse(myX+mySize/4,myY+mySize/4,5,5);
+			ellipse(myX+3*mySize/4,myY+3*mySize/4,5,5);
+			ellipse(myX+mySize/2,myY+mySize/2,5,5);
+			ellipse(myX+mySize/4,myY+3*mySize/4,5,5);
+			ellipse(myX+3*mySize/4,myY+mySize/4,5,5);
 		}
-		else{ // dot = 6
-			
+		else { 
+			ellipse(myX+mySize/4,myY+mySize/4,5,5);
+			ellipse(myX+mySize/4,myY+2*mySize/4,5,5);
+			ellipse(myX+mySize/4,myY+3*mySize/4,5,5);
+
+			ellipse(myX+3*mySize/4,myY+mySize/4,5,5);
+			ellipse(myX+3*mySize/4,myY+2*mySize/4,5,5);
+			ellipse(myX+3*mySize/4,myY+3*mySize/4,5,5);
 		}
 	}
 }
